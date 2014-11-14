@@ -1,4 +1,4 @@
-#include <VBE/scenegraph/Camera.hpp>
+#include <VBE-Scenegraph/scenegraph/Camera.hpp>
 
 Camera::Camera(const std::string& cameraName, const vec3f& pos)
 	: pos(pos), projection(1.0f), rotation(1.0f) {

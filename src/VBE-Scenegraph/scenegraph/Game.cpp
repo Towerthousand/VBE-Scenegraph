@@ -1,4 +1,4 @@
-#include <VBE/scenegraph/Game.hpp>
+#include <VBE-Scenegraph/scenegraph/Game.hpp>
 #include <VBE/system/Clock.hpp>
 #include <VBE/system/Window.hpp>
 #include <VBE/system/Log.hpp>

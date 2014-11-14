@@ -11,21 +11,22 @@ unix {
 
 INCLUDEPATH += include src
 
+include(../VBE/VBE.pri)
 include(../common.pri)
 
 OTHER_FILES += \
     VBE-Scenegraph.pri
 
 HEADERS += \
-    include/VBE/scenegraph.hpp \
-    include/VBE/VBE-Scenegraph.hpp \
-    include/VBE/scenegraph/Camera.hpp \
-    include/VBE/scenegraph/ContainerObject.hpp \
-    include/VBE/scenegraph/Game.hpp \
-    include/VBE/scenegraph/GameObject.hpp
+    include/VBE-Scenegraph/scenegraph.hpp \
+    include/VBE-Scenegraph/VBE-Scenegraph.hpp \
+    include/VBE-Scenegraph/scenegraph/Camera.hpp \
+    include/VBE-Scenegraph/scenegraph/ContainerObject.hpp \
+    include/VBE-Scenegraph/scenegraph/Game.hpp \
+    include/VBE-Scenegraph/scenegraph/GameObject.hpp
 
 SOURCES += \
-    src/VBE/scenegraph/Camera.cpp \
-    src/VBE/scenegraph/ContainerObject.cpp \
-    src/VBE/scenegraph/Game.cpp \
-    src/VBE/scenegraph/GameObject.cpp
+    src/VBE-Scenegraph/scenegraph/Camera.cpp \
+    src/VBE-Scenegraph/scenegraph/ContainerObject.cpp \
+    src/VBE-Scenegraph/scenegraph/Game.cpp \
+    src/VBE-Scenegraph/scenegraph/GameObject.cpp

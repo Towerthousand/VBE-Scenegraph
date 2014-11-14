@@ -4,7 +4,7 @@
 #include <queue>
 #include <set>
 
-#include "GameObject.hpp"
+#include <VBE-Scenegraph/scenegraph/GameObject.hpp>
 
 class ContainerObject : public GameObject {
 	public:

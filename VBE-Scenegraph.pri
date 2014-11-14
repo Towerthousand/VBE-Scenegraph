@@ -5,11 +5,11 @@ LIBS += -lVBE-Scenegraph
 
 # This is needed so the game is recompiled every time
 # we change something in VBE-Scenegraph
-PRE_TARGETDEPS += ../VBE/libVBE-Scenegraph.a
+PRE_TARGETDEPS += ../VBE-Scenegraph/libVBE-Scenegraph.a
 
 win32 {
-        CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../VBE/release/
-        CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../VBE/debug/
+        CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../VBE-Scenegraph/release/
+        CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../VBE-Scenegraph/debug/
 
         CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../VBE-Scenegraph/release/VBE-Scenegraph.lib
         CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../VBE-Scenegraph/debug/VBE-Scenegraph.lib
@@ -17,5 +17,5 @@ win32 {
 
 unix {
         LIBS += -L$$OUT_PWD/../VBE-Scenegraph/
-        PRE_TARGETDEPS += $$OUT_PWD/../VBE/libVBE-Scenegraph.a
+        PRE_TARGETDEPS += $$OUT_PWD/../VBE-Scenegraph/libVBE-Scenegraph.a
 }

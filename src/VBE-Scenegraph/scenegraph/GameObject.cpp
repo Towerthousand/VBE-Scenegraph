@@ -1,5 +1,5 @@
-#include <VBE/scenegraph/GameObject.hpp>
-#include <VBE/scenegraph/Game.hpp>
+#include <VBE-Scenegraph/scenegraph/GameObject.hpp>
+#include <VBE-Scenegraph/scenegraph/Game.hpp>
 #include <VBE/system/Log.hpp>
 
 GameObject::GameObject() : id(Game::i() != nullptr?Game::i()->idCounter++:-1),

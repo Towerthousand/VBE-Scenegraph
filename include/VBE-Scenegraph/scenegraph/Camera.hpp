@@ -1,7 +1,7 @@
 #ifndef CAMERA_HPP
 #define CAMERA_HPP
-#include "GameObject.hpp"
-#include "../geometry/Frustum.hpp"
+#include <VBE-Scenegraph/scenegraph/GameObject.hpp>
+#include <VBE/geometry/Frustum.hpp>
 
 class Camera : public GameObject {
 	public:

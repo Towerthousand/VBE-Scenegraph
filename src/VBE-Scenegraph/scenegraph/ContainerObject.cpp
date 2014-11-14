@@ -1,4 +1,4 @@
-#include <VBE/scenegraph/ContainerObject.hpp>
+#include <VBE-Scenegraph/scenegraph/ContainerObject.hpp>
 #include <VBE/system/Log.hpp>
 
 ContainerObject::ContainerObject() {

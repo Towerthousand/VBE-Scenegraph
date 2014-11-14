@@ -2,7 +2,7 @@
 ///
 /// Scene graph nodes and Game root node
 ///
-#include <VBE/scenegraph/Camera.hpp>
-#include <VBE/scenegraph/ContainerObject.hpp>
-#include <VBE/scenegraph/Game.hpp>
-#include <VBE/scenegraph/GameObject.hpp>
+#include <VBE-Scenegraph/scenegraph/Camera.hpp>
+#include <VBE-Scenegraph/scenegraph/ContainerObject.hpp>
+#include <VBE-Scenegraph/scenegraph/Game.hpp>
+#include <VBE-Scenegraph/scenegraph/GameObject.hpp>

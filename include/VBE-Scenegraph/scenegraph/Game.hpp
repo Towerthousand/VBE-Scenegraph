@@ -3,8 +3,8 @@
 
 #include<map>
 
-#include <VBE/scenegraph/GameObject.hpp>
-#include <VBE/scenegraph/ContainerObject.hpp>
+#include <VBE-Scenegraph/scenegraph/GameObject.hpp>
+#include <VBE-Scenegraph/scenegraph/ContainerObject.hpp>
 
 class Game : public ContainerObject {
 	public:
