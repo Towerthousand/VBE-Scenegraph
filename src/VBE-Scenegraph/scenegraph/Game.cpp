@@ -6,11 +6,11 @@
 
 Game* Game::instance = nullptr;
 
-Game::Game() :isRunning(true), idCounter(1), fixedUpdateRate(0), isFixedUpdateRate(false) {
-	VBE_ASSERT(Game::instance == nullptr, "Two games created");
-	Game::instance = this;
-	isRunning = true;
-	VBE_LOG("* INIT GAME");
+Game::Game(const Window::DisplayMode &mode, const ContextSettings &settings) : isRunning(true), window(mode, settings), idCounter(1), fixedUpdateRate(0), isFixedUpdateRate(false) {
+    VBE_ASSERT(Game::instance == nullptr, "Two games created");
+    Game::instance = this;
+    isRunning = true;
+    VBE_LOG("* INIT GAME");
 }
 
 Game::~Game() {

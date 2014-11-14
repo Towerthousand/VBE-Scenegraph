@@ -5,10 +5,11 @@
 
 #include <VBE-Scenegraph/scenegraph/GameObject.hpp>
 #include <VBE-Scenegraph/scenegraph/ContainerObject.hpp>
+#include <VBE/system/Window.hpp>
 
 class Game : public ContainerObject {
 	public:
-		Game();
+        Game(const Window::DisplayMode& mode, const ContextSettings& settings);
 		virtual ~Game();
 		static Game* i() { return Game::instance;}
 
@@ -25,6 +26,8 @@ class Game : public ContainerObject {
 		virtual void update(float deltaTime);
 		virtual void draw();
 	private:
+        Window window;
+
 		std::map<std::string, GameObject*> nameMap;
 		std::map<int, GameObject*> idMap;
 		int idCounter;
