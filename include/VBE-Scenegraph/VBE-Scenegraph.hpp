@@ -1,5 +1,5 @@
-///	\defgroup Utils Utilities
+///	\defgroup Scenegraph Scenegraph
 ///
-///	Logging system and generic interfaces
+///	Scene graph nodes and game root node
 ///
 #include <VBE-Scenegraph/scenegraph.hpp>
