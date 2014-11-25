@@ -1,6 +1,6 @@
-///	\defgroup Scene Scene Graph
+///	\defgroup Scenegraph Scenegraph
 ///
-/// Scene graph nodes and Game root node
+///	Scene graph nodes and game root node
 ///
 #include <VBE-Scenegraph/scenegraph/Camera.hpp>
 #include <VBE-Scenegraph/scenegraph/ContainerObject.hpp>
