@@ -12,10 +12,12 @@ class ContainerObject : public GameObject {
 		virtual ~ContainerObject();
 	protected:
 		virtual void update(float deltaTime);
+		virtual void fixedUpdate(float deltaTime);
 		virtual void draw() const;
 	private:
 		void addToContainer(GameObject* obj) override;
 		void removeFromContainer(GameObject* obj) override;
+		void manageObjects();
 
 		struct FunctorCompareDraw{
 				bool operator()(const GameObject* a, const GameObject* b) {

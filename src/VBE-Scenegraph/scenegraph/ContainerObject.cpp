@@ -14,24 +14,19 @@ ContainerObject::~ContainerObject() {
 }
 
 void ContainerObject::update(float deltaTime) {
-	while(!objectTasksToRemove.empty()) {
-		GameObject* obj = objectTasksToRemove.front();
-		updateTasks.erase(obj);
-		drawTasks.erase(obj);
-		objectTasksToRemove.pop();
-		if(!obj->isAlive) delete obj;
-	}
-
-	while(!objectTasksToAdd.empty()) {
-		GameObject* obj = objectTasksToAdd.front();
-		updateTasks.insert(obj);
-		drawTasks.insert(obj);
-		objectTasksToAdd.pop();
-	}
-
+	manageObjects();
 	for(std::set<GameObject*, FunctorCompareUpdate>::iterator it = updateTasks.begin(); it != updateTasks.end(); ++it) {
 		mat4f oldTransform = (*it)->transform;
 		(*it)->update(deltaTime);
+		if((*it)->transform != oldTransform) (*it)->propragateTransforms();
+	}
+}
+
+void ContainerObject::fixedUpdate(float deltaTime) {
+	manageObjects();
+	for(std::set<GameObject*, FunctorCompareUpdate>::iterator it = updateTasks.begin(); it != updateTasks.end(); ++it) {
+		mat4f oldTransform = (*it)->transform;
+		(*it)->fixedUpdate(deltaTime);
 		if((*it)->transform != oldTransform) (*it)->propragateTransforms();
 	}
 }
@@ -57,4 +52,21 @@ void ContainerObject::removeFromContainer(GameObject* obj) {
 	if(dynamic_cast<ContainerObject*> (obj) == nullptr)
 		for(std::list<GameObject*>::iterator it = obj->children.begin(); it != obj->children.end(); ++it)
 			removeFromContainer(*it);
+}
+
+void ContainerObject::manageObjects() {
+	while(!objectTasksToRemove.empty()) {
+		GameObject* obj = objectTasksToRemove.front();
+		updateTasks.erase(obj);
+		drawTasks.erase(obj);
+		objectTasksToRemove.pop();
+		if(!obj->isAlive) delete obj;
+	}
+
+	while(!objectTasksToAdd.empty()) {
+		GameObject* obj = objectTasksToAdd.front();
+		updateTasks.insert(obj);
+		drawTasks.insert(obj);
+		objectTasksToAdd.pop();
+	}
 }

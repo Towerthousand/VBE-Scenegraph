@@ -63,29 +63,28 @@ void Game::setDynamicFramerate() {
 // Main game loop
 void Game::run() {
 	if(isFixedUpdateRate) {
-		float deltaTime = 1.0f/float(fixedUpdateRate);
-		float time = Clock::getSeconds();
+		float fixedTime = 1.0f/float(fixedUpdateRate);
 		float accumulated = 0.0f;
-		float newTime = 0.0f;
+		float oldTime = Clock::getSeconds();
 		while (isRunning) {
-			if(accumulated < deltaTime)
-				Clock::sleepSeconds(deltaTime-accumulated);//miliseconds to wait
-			newTime = Clock::getSeconds();
-			accumulated = newTime-time;
-			time = newTime;
-			while(accumulated >= deltaTime) {
-				update(deltaTime);
-				accumulated -= deltaTime;
+			float time = Clock::getSeconds();
+			float deltaTime = time-oldTime;
+			oldTime = time;
+			accumulated += deltaTime;
+			while(accumulated >= fixedTime) {
+				fixedUpdate(fixedTime);
+				accumulated -= fixedTime;
 			}
+			update(deltaTime);
 			draw();
 		}
 	}
 	else {
-		float time = Clock::getSeconds();
+		float oldTime = Clock::getSeconds();
 		while (isRunning) {
-			float newTime = Clock::getSeconds();
-			float deltaTime = newTime-time;
-			time = newTime;
+			float time = Clock::getSeconds();
+			float deltaTime = time-oldTime;
+			oldTime = time;
 			update(deltaTime);
 			draw();
 		}

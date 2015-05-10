@@ -22,6 +22,10 @@ void GameObject::update(float deltaTime) {
 	(void)deltaTime;
 }
 
+void GameObject::fixedUpdate(float deltaTime) {
+	(void)deltaTime;
+}
+
 void GameObject::draw() const {
 }
 

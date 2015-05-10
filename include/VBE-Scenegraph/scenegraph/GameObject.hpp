@@ -51,6 +51,7 @@ class GameObject : public NonCopyable { //scenegraph nodes
 		const int id;
 	protected:
 		virtual void update(float deltaTime);
+		virtual void fixedUpdate(float deltaTime);
 		virtual void draw() const ;
 		virtual void onObjectAdd(GameObject* object);
 
