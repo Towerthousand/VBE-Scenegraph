@@ -15,25 +15,29 @@ class Game : public ContainerObject {
 
 		GameObject* getObjectByName(std::string name) const;
 		GameObject* getObjectByID(int id) const;
+		float getTimeSinceFixed() const;
+		float getFixedUpdateTime() const;
 
 		virtual void run();
 
 		void setFixedUpdateRate(int fixedUpdateRate);
 		void setDynamicFramerate();
 
-		bool isRunning;
+		bool isRunning = true;
 	protected:
-		virtual void update(float deltaTime);
-		virtual void draw();
+		virtual void update(float deltaTime) override;
+		virtual void draw() const override;
 	private:
         Window window;
 
 		std::map<std::string, GameObject*> nameMap;
 		std::map<int, GameObject*> idMap;
-		int idCounter;
+		int idCounter = 1;
 
-		int fixedUpdateRate;
-		bool isFixedUpdateRate;
+		int fixedUpdateRate = 0;
+		bool isFixedUpdateRate = false;
+		float lastFixedUpdate = 0.0f;
+		float timeSinceFixed = 0.0f;
 
 		static Game* instance;
 

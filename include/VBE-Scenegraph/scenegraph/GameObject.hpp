@@ -48,34 +48,33 @@ class GameObject : public NonCopyable { //scenegraph nodes
 
 		const std::list<GameObject*>& getChildren() const;
 
-		const int id;
+		const int id = 0;
 	protected:
 		virtual void update(float deltaTime);
 		virtual void fixedUpdate(float deltaTime);
 		virtual void draw() const ;
 		virtual void onObjectAdd(GameObject* object);
+		void propragateTransforms() const;
 
 		Game* getGame() const;
 		const GameObject* getParent() const;
 
-		//Model matrix
-		mat4f transform;
-		mutable mat4f fullTransform;
+		mat4f transform = mat4f(1.0f);
+		mutable mat4f fullTransform = mat4f(1.0f);
 	private:
 		void removeFromParent();
-		void propragateTransforms() const;
 		void markForDelete();
 
 		virtual void addToContainer(GameObject* obj);
 		virtual void removeFromContainer(GameObject* obj);
 
-		GameObject* parent;
+		GameObject* parent = nullptr;
 		std::list<GameObject*> children;
-		int drawPriority;
-		int updatePriority;
-		std::string name;
-		ContainerObject* container;
-		bool isAlive;
+		int drawPriority = 0;
+		int updatePriority = 0;
+		std::string name = "";
+		ContainerObject* container = nullptr;
+		bool isAlive = true;
 
 		friend class ContainerObject;
 };

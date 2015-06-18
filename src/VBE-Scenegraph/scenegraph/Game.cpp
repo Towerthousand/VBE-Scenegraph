@@ -6,7 +6,7 @@
 
 Game* Game::instance = nullptr;
 
-Game::Game(const Window::DisplayMode &mode, const ContextSettings &settings) : isRunning(true), window(mode, settings), idCounter(1), fixedUpdateRate(0), isFixedUpdateRate(false) {
+Game::Game(const Window::DisplayMode &mode, const ContextSettings &settings) : window(mode, settings) {
     VBE_ASSERT(Game::instance == nullptr, "Two games created");
     Game::instance = this;
     isRunning = true;
@@ -36,7 +36,7 @@ void Game::update(float deltaTime) {
 	ContainerObject::update(deltaTime);
 }
 
-void Game::draw() {
+void Game::draw() const {
 	ContainerObject::draw();
 	Window::getInstance()->swapBuffers();
 }
@@ -49,6 +49,14 @@ GameObject* Game::getObjectByName(std::string name) const {
 GameObject* Game::getObjectByID(int id) const {
 	VBE_ASSERT(idMap.find(id) != idMap.end(), "There is no object with id " << id);
 	return idMap.at(id);
+}
+
+float Game::getTimeSinceFixed() const {
+	return timeSinceFixed;
+}
+
+float Game::getFixedUpdateTime() const {
+	return 1.0f/float(fixedUpdateRate);
 }
 
 void Game::setFixedUpdateRate(int fixedFramerate) {
@@ -66,15 +74,20 @@ void Game::run() {
 		float fixedTime = 1.0f/float(fixedUpdateRate);
 		float accumulated = 0.0f;
 		float oldTime = Clock::getSeconds();
+		lastFixedUpdate = Clock::getSeconds();
 		while (isRunning) {
-			float time = Clock::getSeconds();
-			float deltaTime = time-oldTime;
-			oldTime = time;
-			accumulated += deltaTime;
+			float now = Clock::getSeconds();
+			accumulated += now-oldTime;
 			while(accumulated >= fixedTime) {
+				lastFixedUpdate = now;
 				fixedUpdate(fixedTime);
 				accumulated -= fixedTime;
+				now = Clock::getSeconds();
+				accumulated += now-lastFixedUpdate;
 			}
+			timeSinceFixed = now - lastFixedUpdate;
+			float deltaTime = now - oldTime;
+			oldTime = now;
 			update(deltaTime);
 			draw();
 		}

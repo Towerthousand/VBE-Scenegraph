@@ -11,12 +11,12 @@ class ContainerObject : public GameObject {
 		ContainerObject();
 		virtual ~ContainerObject();
 	protected:
-		virtual void update(float deltaTime);
-		virtual void fixedUpdate(float deltaTime);
-		virtual void draw() const;
+		virtual void update(float deltaTime) override;
+		virtual void fixedUpdate(float deltaTime) override;
+		virtual void draw() const override;
 	private:
-		void addToContainer(GameObject* obj) override;
-		void removeFromContainer(GameObject* obj) override;
+		void addToContainer(GameObject* obj) override final;
+		void removeFromContainer(GameObject* obj) override final;
 		void manageObjects();
 
 		struct FunctorCompareDraw{

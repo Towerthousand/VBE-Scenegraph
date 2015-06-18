@@ -2,9 +2,7 @@
 #include <VBE-Scenegraph/scenegraph/Game.hpp>
 #include <VBE/system/Log.hpp>
 
-GameObject::GameObject() : id(Game::i() != nullptr?Game::i()->idCounter++:-1),
-	transform(1.0f), fullTransform(1.0f), parent(nullptr), drawPriority(0),
-	updatePriority(0), name(""), container(nullptr), isAlive(true) {
+GameObject::GameObject() : id(Game::i() != nullptr?Game::i()->idCounter++:-1) {
 	if(Game::i() != nullptr)
 		Game::i()->idMap.insert(std::pair<int, GameObject*>(id, this));
 }

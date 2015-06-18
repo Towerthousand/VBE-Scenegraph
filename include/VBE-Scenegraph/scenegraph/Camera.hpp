@@ -20,12 +20,12 @@ class Camera : public GameObject {
 		const Frustum& getFrustum() const;
 		void recalculateFrustum();
 
-		vec3f pos;
-		mat4f projection;
+		vec3f pos = vec3f(0.0f);
+		mat4f projection = mat4f(1.0f);
 	protected:
-		virtual void update(float deltaTime);
+		virtual void update(float deltaTime) override;
 
-		mat4f rotation;
+		mat4f rotation = mat4f(1.0f);
 		Frustum frustum;
 };
 
