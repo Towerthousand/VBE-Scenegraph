@@ -6,7 +6,7 @@
 
 Game* Game::instance = nullptr;
 
-Game::Game(const Window::DisplayMode &mode, const ContextSettings &settings) : window(mode, settings) {
+Game::Game(const Window::DisplayMode &mode, const ContextSettings &settings, bool defaultClose) : window(mode, settings), defaultClose(defaultClose) {
     VBE_ASSERT(Game::instance == nullptr, "Two games created");
     Game::instance = this;
     isRunning = true;
@@ -25,7 +25,6 @@ Game::~Game() {
 	}
 
 	//At this point everything should be totally gone.
-	VBE_LOG("* EXITING GAME: CLEARING RESOURCES" );
 	isRunning = false;
 	Game::instance = nullptr;
 	VBE_LOG("* EXIT GAME SUCCESFUL" );
@@ -90,6 +89,7 @@ void Game::run() {
 			oldTime = now;
 			update(deltaTime);
 			draw();
+			if(Window::getInstance()->isClosing() && defaultClose) isRunning = false;
 		}
 	}
 	else {
@@ -100,6 +100,7 @@ void Game::run() {
 			oldTime = time;
 			update(deltaTime);
 			draw();
+			if(Window::getInstance()->isClosing() && defaultClose) isRunning = false;
 		}
 	}
 }

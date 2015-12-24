@@ -1,7 +1,7 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include<map>
+#include <map>
 
 #include <VBE-Scenegraph/scenegraph/GameObject.hpp>
 #include <VBE-Scenegraph/scenegraph/ContainerObject.hpp>
@@ -9,7 +9,7 @@
 
 class Game : public ContainerObject {
 	public:
-        Game(const Window::DisplayMode& mode, const ContextSettings& settings);
+        Game(const Window::DisplayMode& mode, const ContextSettings& settings, bool defaultClose = true);
 		virtual ~Game();
 		static Game* i() { return Game::instance;}
 
@@ -35,6 +35,7 @@ class Game : public ContainerObject {
 		int idCounter = 1;
 
 		int fixedUpdateRate = 0;
+		bool defaultClose = false;
 		bool isFixedUpdateRate = false;
 		float lastFixedUpdate = 0.0f;
 		float timeSinceFixed = 0.0f;
