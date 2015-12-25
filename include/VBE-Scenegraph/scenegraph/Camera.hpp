@@ -16,7 +16,6 @@ class Camera : public GameObject {
 		vec3f getWorldPos() const;
 		vec3f getForward() const;
 		mat4f getView() const;
-		mat4f getProjection() const;
 		const Frustum& getFrustum() const;
 		void recalculateFrustum();
 
