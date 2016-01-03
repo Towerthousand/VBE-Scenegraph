@@ -68,7 +68,7 @@ void GameObject::setName(std::string newName) {
 
 void GameObject::setDrawPriority(int newPriority) {
 	if(drawPriority == newPriority) return;
-	if(parent != nullptr) {
+	if(parent != nullptr && container != nullptr) {
 		container->objectTasksToRemove.push(this);
 		container->objectTasksToAdd.push(this);
 	}
@@ -77,7 +77,7 @@ void GameObject::setDrawPriority(int newPriority) {
 
 void GameObject::setUpdatePriority(int newPriority) {
 	if(updatePriority == newPriority) return;
-	if(container != nullptr) {
+	if(container != nullptr && container != nullptr) {
 		container->objectTasksToRemove.push(this);
 		container->objectTasksToAdd.push(this);
 	}
@@ -132,7 +132,6 @@ void GameObject::addToContainer(GameObject* obj) {
 	if(parent != nullptr)
 		parent->addToContainer(obj);
 }
-
 
 void GameObject::removeFromContainer(GameObject* obj) {
 	if(parent != nullptr)
